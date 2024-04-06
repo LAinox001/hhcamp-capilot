@@ -14,6 +14,10 @@
         <div>
             <button class="button" @click="addSprite">Add New Sprite</button>
         </div>
+        
+        <div>
+            <button class="button" @click="openMap">Open Map</button>
+        </div>
         <div>
             <button class="button" @click="isJournalDeBordOpened = !isJournalDeBordOpened">
                 <template v-if="isJournalDeBordOpened">Fermer</template> 
@@ -83,5 +87,12 @@ const addSprite = () => {
 //  This event is emitted from the PhaserGame component:
 const currentScene = (scene) => {
     canMoveSprite.value = (scene.scene.key !== 'MainMenu')
+}
+
+const openMap = () => {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
+        scene.scene.start('Map')
+    }
 }
 </script>
