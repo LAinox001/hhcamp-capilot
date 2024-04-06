@@ -56,6 +56,14 @@ const addSprite = () => {
 const currentScene = (scene) => {
     canMoveSprite.value = (scene.scene.key !== 'MainMenu')
 }
+
+const openMap = () => {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
+        scene.scene.start('Map')
+    }
+
+}
 </script>
 
 <template>
@@ -72,6 +80,9 @@ const currentScene = (scene) => {
         </div>
         <div>
             <button class="button" @click="addSprite">Add New Sprite</button>
+        </div>
+        <div>
+            <button class="button" @click="openMap">Open Map</button>
         </div>
     </div>
 </template>
