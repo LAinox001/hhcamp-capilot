@@ -1,6 +1,6 @@
 <template>
-    <JournalDeBord v-if="isJournalDeBordOpened" />
-    <PhaserGame ref="phaserRef" @current-active-scene="currentScene" v-else />
+    <JournalDeBord v-if="isJournalDeBordOpened" :show-boussole="goToBoussolePage"/>
+    <PhaserGame ref="phaserRef" @current-active-scene="currentScene" @show-journal-boussole="showJournalBoussole" v-else />
     <div>
         <div>
             <button class="button" @click="changeScene">Change Scene</button>
@@ -13,6 +13,9 @@
         </div>
         <div>
             <button class="button" @click="addSprite">Add New Sprite</button>
+        </div>
+        <div>
+            <button class="button" @click="openBoussole">Ouvrir la Boussole Des Emotions</button>
         </div>
         
         <div>
@@ -45,6 +48,7 @@ const phaserRef = ref()
 const spritePosition = ref({ x: 0, y: 0 })
 
 const isJournalDeBordOpened = ref(false);
+const goToBoussolePage = ref(false);
 
 const changeScene = () => {
     const scene = toRaw(phaserRef.value.scene)
@@ -90,6 +94,22 @@ const addSprite = () => {
 //  This event is emitted from the PhaserGame component:
 const currentScene = (scene) => {
     canMoveSprite.value = (scene.scene.key !== 'MainMenu')
+}
+
+const showJournalBoussole = () => {
+    goToBoussolePage.value = true;
+    isJournalDeBordOpened.value = true;
+}
+
+const openBoussole = () => {
+    isJournalDeBordOpened.value = false;
+    goToBoussolePage.value = false;
+    setTimeout(() => {
+        const scene = toRaw(phaserRef.value.scene)
+        if (scene) {
+            scene.scene.start('BoussoleDesEmotions')
+        }
+    }, 500)
 }
 
 const openMap = () => {
