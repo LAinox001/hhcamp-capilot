@@ -7,7 +7,7 @@ import StartGame from './main'
 const scene = ref()
 const game = ref()
 
-const emit = defineEmits(['current-active-scene'])
+const emit = defineEmits(['current-active-scene', 'show-journal-boussole'])
 
 onMounted(() => {
     game.value = StartGame('game-container')
@@ -15,6 +15,10 @@ onMounted(() => {
     EventBus.on('current-scene-ready', (currentScene) => {
         emit('current-active-scene', currentScene)
         scene.value = currentScene
+    })
+    
+    EventBus.on('show-journal-boussole', () => {
+        emit('show-journal-boussole')
     })
 })
 
