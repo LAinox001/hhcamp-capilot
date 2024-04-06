@@ -1,7 +1,38 @@
+<template>
+    <JournalDeBord v-if="isJournalDeBordOpened" />
+    <PhaserGame ref="phaserRef" @current-active-scene="currentScene" v-else />
+    <div>
+        <div>
+            <button class="button" @click="changeScene">Change Scene</button>
+        </div>
+        <div>
+            <button :disabled="canMoveSprite" class="button" @click="moveSprite">Toggle Movement</button>
+        </div>
+        <div class="spritePosition">Sprite Position:
+            <pre>{{ spritePosition }}</pre>
+        </div>
+        <div>
+            <button class="button" @click="addSprite">Add New Sprite</button>
+        </div>
+        
+        <div>
+            <button class="button" @click="openMap">Open Map</button>
+        </div>
+        <div>
+            <button class="button" @click="isJournalDeBordOpened = !isJournalDeBordOpened">
+                <template v-if="isJournalDeBordOpened">Fermer</template> 
+                <template v-else>Ouvrir</template> 
+                le journal de bord
+            </button>
+        </div>
+    </div>
+</template>
+
 <script setup>
 import Phaser from 'phaser'
 import { ref, toRaw } from 'vue'
 import PhaserGame from './game/PhaserGame.vue'
+import JournalDeBord from './web/JournalDeBord.vue'
 
 // The sprite can only be moved in the MainMenu Scene
 const canMoveSprite = ref()
@@ -9,6 +40,8 @@ const canMoveSprite = ref()
 //  References to the PhaserGame component (game and scene are exposed)
 const phaserRef = ref()
 const spritePosition = ref({ x: 0, y: 0 })
+
+const isJournalDeBordOpened = ref(false);
 
 const changeScene = () => {
     const scene = toRaw(phaserRef.value.scene)
@@ -49,7 +82,6 @@ const addSprite = () => {
             repeat: -1
         })
     }
-
 }
 
 //  This event is emitted from the PhaserGame component:
@@ -62,27 +94,5 @@ const openMap = () => {
     if (scene) {
         scene.scene.start('Map')
     }
-
 }
 </script>
-
-<template>
-    <PhaserGame ref="phaserRef" @current-active-scene="currentScene" />
-    <div>
-        <div>
-            <button class="button" @click="changeScene">Change Scene</button>
-        </div>
-        <div>
-            <button :disabled="canMoveSprite" class="button" @click="moveSprite">Toggle Movement</button>
-        </div>
-        <div class="spritePosition">Sprite Position:
-            <pre>{{ spritePosition }}</pre>
-        </div>
-        <div>
-            <button class="button" @click="addSprite">Add New Sprite</button>
-        </div>
-        <div>
-            <button class="button" @click="openMap">Open Map</button>
-        </div>
-    </div>
-</template>
