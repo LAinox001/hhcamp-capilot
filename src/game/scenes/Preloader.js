@@ -30,6 +30,28 @@ export class Preloader extends Scene {
 
         this.load.image('logo', 'logo.png')
         this.load.image('star', 'star.png')
+        this.load.image('general', 'general.png');
+        this.load.image('boat', 'boat.png');
+
+
+        this.load.image('island_1', 'island2_1024x768.png');
+
+        /* timeline game start
+
+g1 -> config diab -> g2 -> carte avec coffre -> g3 -> g4
+-> boussole -> g5 -> g6 -> carte avec hamac -> g7 -> g8 -> g9 -> g10
+TODO: comment faire apparaitre le journal avec une bulle explicative ?
+        */
+        this.load.text('general_1', 'dialogs/general_1.txt');
+        this.load.text('general_2', 'dialogs/general_2.txt');
+        this.load.text('general_3', 'dialogs/general_3.txt');
+        this.load.text('general_4', 'dialogs/general_4.txt');
+        this.load.text('general_5', 'dialogs/general_5.txt');
+        this.load.text('general_6', 'dialogs/general_6.txt');
+        this.load.text('general_7', 'dialogs/general_7.txt');
+        this.load.text('general_8', 'dialogs/general_8.txt');
+        this.load.text('general_9', 'dialogs/general_9.txt');
+        this.load.text('general_10', 'dialogs/general_10.txt');
     }
 
     create() {

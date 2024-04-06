@@ -27,7 +27,8 @@ export class Map extends Scene {
         console.log('scene: Map', this.physics);
 
         this.cameras.main.setBackgroundColor(0x00ff00);
-        this.add.image(512, 384, 'background').setAlpha(0.5);
+        //this.add.image(512, 384, 'background').setAlpha(0.5);
+        this.add.image(0, 0, 'island_1').setOrigin(0); //.setAlpha(0.5);
 
         this.cursors = this.input.keyboard.createCursorKeys();
         /*
@@ -42,7 +43,7 @@ export class Map extends Scene {
           interestSprite.cb = cb;
         });
 
-        this.player = this.physics.add.sprite(150, 150, 'star');
+        this.player = this.physics.add.sprite(85, 150, 'boat');
         this.player.setCollideWorldBounds(true);
         this.player.body.setAllowGravity(false);
 

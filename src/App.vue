@@ -19,6 +19,9 @@
             <button class="button" @click="openMap">Open Map</button>
         </div>
         <div>
+            <button class="button" @click="openDialog">Open Dialog</button>
+        </div>
+        <div>
             <button class="button" @click="isJournalDeBordOpened = !isJournalDeBordOpened">
                 <template v-if="isJournalDeBordOpened">Fermer</template> 
                 <template v-else>Ouvrir</template> 
@@ -92,7 +95,36 @@ const currentScene = (scene) => {
 const openMap = () => {
     const scene = toRaw(phaserRef.value.scene)
     if (scene) {
-        scene.scene.start('Map')
+        scene.scene.start('Map');
     }
-}
+};
+const openDialogScene = (sprite, text, next) => {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
+        scene.scene.start('Dialog', {
+            sprite,
+            message: scene.cache.text.get(text),
+            next
+        });
+    }
+};
+
+const openDialog = () => {
+
+    openDialogScene('general', 'general_1', () => {
+        openDialogScene('general', 'general_2');
+    });
+
+    /*const scene = toRaw(phaserRef.value.scene);
+    if (scene) {
+        
+        scene.scene.start('Dialog', {
+            sprite: 'stickman',
+            message: scene.cache.text.get('general_1'),
+            next: () => {
+                openDialogScene('stickman', 'general_2')
+            }
+        });
+    }*/
+};
 </script>

@@ -3,6 +3,7 @@ import { Game } from './scenes/Game';
 import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
 import { Map } from './scenes/Map';
+import { Dialog } from './scenes/Dialog';
 import Phaser from 'phaser';
 import { Preloader } from './scenes/Preloader';
 
@@ -20,7 +21,8 @@ const config = {
         MainMenu,
         Game,
         GameOver,
-        Map
+        Map,
+        Dialog
     ],
     physics: {
         default: 'arcade',
