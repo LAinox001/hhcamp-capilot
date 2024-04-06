@@ -1,55 +1,42 @@
 <script setup>
-import Phaser from 'phaser';
-import { ref, toRaw } from 'vue';
-import PhaserGame from './game/PhaserGame.vue';
+import Phaser from 'phaser'
+import { ref, toRaw } from 'vue'
+import PhaserGame from './game/PhaserGame.vue'
 
 // The sprite can only be moved in the MainMenu Scene
-const canMoveSprite = ref();
+const canMoveSprite = ref()
 
 //  References to the PhaserGame component (game and scene are exposed)
-const phaserRef = ref();
-const spritePosition = ref({ x: 0, y: 0 });
+const phaserRef = ref()
+const spritePosition = ref({ x: 0, y: 0 })
 
 const changeScene = () => {
-
-    const scene = toRaw(phaserRef.value.scene);
-
-    if (scene)
-    {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
         //  Call the changeScene method defined in the `MainMenu`, `Game` and `GameOver` Scenes
-        scene.changeScene();
+        scene.changeScene()
     }
-
 }
 
 const moveSprite = () => {
-
-    const scene = toRaw(phaserRef.value.scene);
-
-    if (scene)
-    {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
         //  Call the `moveLogo` method in the `MainMenu` Scene and capture the sprite position
         scene.moveLogo(({ x, y }) => {
-
-            spritePosition.value = { x, y };
-
-        });
+            spritePosition.value = { x, y }
+        })
     }
-
 }
 
 const addSprite = () => {
-
-    const scene = toRaw(phaserRef.value.scene);
-
-    if (scene)
-    {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
         //  Add a new sprite to the current scene at a random position
-        const x = Phaser.Math.Between(64, scene.scale.width - 64);
-        const y = Phaser.Math.Between(64, scene.scale.height - 64);
+        const x = Phaser.Math.Between(64, scene.scale.width - 64)
+        const y = Phaser.Math.Between(64, scene.scale.height - 64)
 
         //  `add.sprite` is a Phaser GameObjectFactory method and it returns a Sprite Game Object instance
-        const star = scene.add.sprite(x, y, 'star');
+        const star = scene.add.sprite(x, y, 'star')
 
         //  ... which you can then act upon. Here we create a Phaser Tween to fade the star sprite in and out.
         //  You could, of course, do this from within the Phaser Scene code, but this is just an example
@@ -60,16 +47,14 @@ const addSprite = () => {
             alpha: 0,
             yoyo: true,
             repeat: -1
-        });
+        })
     }
 
 }
 
 //  This event is emitted from the PhaserGame component:
 const currentScene = (scene) => {
-
-    canMoveSprite.value = (scene.scene.key !== 'MainMenu');
-
+    canMoveSprite.value = (scene.scene.key !== 'MainMenu')
 }
 </script>
 
