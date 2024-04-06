@@ -117,7 +117,6 @@ const openDialog = () => {
 
     /*const scene = toRaw(phaserRef.value.scene);
     if (scene) {
-        
         scene.scene.start('Dialog', {
             sprite: 'stickman',
             message: scene.cache.text.get('general_1'),
