@@ -1,5 +1,6 @@
 import { EventBus } from '../EventBus'
 import { Scene } from 'phaser'
+import { config } from '../main.js'
 
 export class MainMenu extends Scene {
     logoTween
@@ -9,15 +10,8 @@ export class MainMenu extends Scene {
     }
 
     create() {
-        this.add.image(512, 384, 'background')
-
-        this.logo = this.add.image(512, 300, 'logo').setDepth(100)
-
-        this.add.text(512, 460, 'Main Menu', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setDepth(100).setOrigin(0.5)
+        let splashScreen = this.add.image(0, 0, 'splash-screen').setOrigin(0);
+        splashScreen.setScale(config.width / splashScreen.width, config.height / splashScreen.height);
 
         EventBus.emit('current-scene-ready', this)
     }

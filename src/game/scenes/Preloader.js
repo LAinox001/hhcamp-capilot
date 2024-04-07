@@ -28,6 +28,7 @@ export class Preloader extends Scene {
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets')
 
+        this.load.image('splash-screen', 'splash_screen.png')
         this.load.image('logo', 'logo.png')
         this.load.image('star', 'star.png')
         this.load.image("roue-des-emotions", "boussole_emotions.png")
