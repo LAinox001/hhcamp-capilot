@@ -34,10 +34,12 @@ export class Preloader extends Scene {
         this.load.image('general', 'general.png');
         this.load.image('boat', 'boat.png');
         this.load.image('avatar', 'avatar_96.png');
-        this.load.image('empty', 'empty.png')
+        this.load.image('empty', 'empty.png');
+        this.load.image('ocean_islands', 'ocean_islands2.png');
 
 
         this.load.image('island_1', 'island3_1024x768.png');
+        this.load.image('ship', 'bateau_vector.png');
 
         /* timeline game start
 

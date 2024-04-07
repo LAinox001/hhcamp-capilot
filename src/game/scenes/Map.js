@@ -7,7 +7,7 @@ import { Scene } from 'phaser'
 export class Map extends Scene {
     constructor() {
         super('Map');
-        this.interestPoints = [
+        /*this.interestPoints = [
           {
             key: 'empty',
             x: 530,
@@ -20,7 +20,15 @@ export class Map extends Scene {
             y: 275,
             cb: (...args) => console.log('boussole trouvé', args)
           }
-        ];
+        ];*/
+    }
+
+    init({ playerImage, playerX, playerY, islandImage, interestPoints }) {
+      this.playerImage = playerImage;
+      this.playerX = playerX;
+      this.playerY = playerY;
+      this.islandImage = islandImage;
+      this.interestPoints = interestPoints;
     }
 
     create() {
@@ -28,7 +36,7 @@ export class Map extends Scene {
 
         this.cameras.main.setBackgroundColor(0x00ff00);
         //this.add.image(512, 384, 'background').setAlpha(0.5);
-        this.add.image(0, 0, 'island_1').setOrigin(0); //.setAlpha(0.5);
+        this.add.image(0, 0, this.islandImage).setOrigin(0); //.setAlpha(0.5);
 
         this.cursors = this.input.keyboard.createCursorKeys();
         /*
@@ -43,7 +51,7 @@ export class Map extends Scene {
           interestSprite.cb = cb;
         });
 
-        this.player = this.physics.add.sprite(200, 500, 'avatar');
+        this.player = this.physics.add.sprite(this.playerX, this.playerY, this.playerImage);
         this.player.setCollideWorldBounds(true);
         this.player.body.setAllowGravity(false);
 
