@@ -33,9 +33,11 @@ export class Preloader extends Scene {
         this.load.image("roue-des-emotions", "boussole_emotions.png")
         this.load.image('general', 'general.png');
         this.load.image('boat', 'boat.png');
+        this.load.image('avatar', 'avatar_96.png');
+        this.load.image('empty', 'empty.png')
 
 
-        this.load.image('island_1', 'island2_1024x768.png');
+        this.load.image('island_1', 'island3_1024x768.png');
 
         /* timeline game start
 

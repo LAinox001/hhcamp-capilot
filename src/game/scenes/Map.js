@@ -9,16 +9,16 @@ export class Map extends Scene {
         super('Map');
         this.interestPoints = [
           {
-            key: 'star',
-            x: 69,
-            y: 420,
-            cb: (...args) => console.log('1st star', args)
+            key: 'empty',
+            x: 530,
+            y: 550,
+            cb: (...args) => console.log('coffre trouvé', args)
           },
           {
-            key: 'star',
-            x: 420,
-            y: 69,
-            cb: (...args) => console.log('2nd star', args)
+            key: 'empty',
+            x: 745,
+            y: 275,
+            cb: (...args) => console.log('boussole trouvé', args)
           }
         ];
     }
@@ -43,7 +43,7 @@ export class Map extends Scene {
           interestSprite.cb = cb;
         });
 
-        this.player = this.physics.add.sprite(85, 150, 'boat');
+        this.player = this.physics.add.sprite(200, 500, 'avatar');
         this.player.setCollideWorldBounds(true);
         this.player.body.setAllowGravity(false);
 
@@ -103,7 +103,7 @@ export class Map extends Scene {
     }
 
     handleMouseClick({ downX, downY }) {
-      //console.log('map clicked', downX, downY);
+      console.log('map clicked', downX, downY);
       this.physics.moveTo(this.player, downX, downY, 0, 500);
       const marker = this.physics.add.body(downX, downY, 1, 1);
       this.physics.moveToObject(this.player, marker, 60 , 750);
