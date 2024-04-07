@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 
 const phasermsg = () => {
     return {
+        base: '/hhcamp-capilot/',
         name: 'phasermsg',
         buildStart() {
             process.stdout.write(`Building for production...\n`);
