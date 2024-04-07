@@ -107,6 +107,7 @@ const openBoussole = () => {
     setTimeout(() => {
         const scene = toRaw(phaserRef.value.scene)
         if (scene) {
+            scene.scene.stop('Map')
             scene.scene.start('BoussoleDesEmotions')
         }
     }, 500)
