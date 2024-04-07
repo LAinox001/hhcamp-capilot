@@ -120,6 +120,16 @@ export class BoussoleDesEmotions extends Scene {
                 localStorage.setItem("compassEmotions", JSON.stringify(compassEmotions))
                 EventBus.emit('show-journal-boussole')
             });
+
+            const confirmationText = this.add.text(512, 384, 'Boussole trouvée !', {
+                fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+                stroke: '#000000', strokeThickness: 8,
+                align: 'center',
+            }).setOrigin(0.5).setDepth(100);
+            
+            setTimeout(() => {
+                confirmationText.destroy();
+            }, 1500);
         }
 
         EventBus.emit('current-scene-ready', this)
