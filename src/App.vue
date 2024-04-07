@@ -7,6 +7,9 @@
         </div>
         
         <div>
+            <button class="button" @click="openSeaMap">Open Navigation</button>
+        </div>
+        <div>
             <button class="button" @click="openMap">Open Map</button>
         </div>
         <div>
@@ -100,11 +103,53 @@ const openBoussole = () => {
         }
     }, 500)
 }
+/*
+const openIslandMap = () => {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
+        scene.scene.start('Map');
+    }
+};*/
+
+const openSeaMap = () => {
+    const scene = toRaw(phaserRef.value.scene)
+    if (scene) {
+        scene.scene.start('Map', {
+            playerImage: 'ship',
+            playerX: 100,
+            playerY: 64,
+            islandImage: 'ocean_islands',
+            interestPoints: []
+        });
+    }
+};
 
 const openMap = () => {
     const scene = toRaw(phaserRef.value.scene)
     if (scene) {
-        scene.scene.start('Map');
+        scene.scene.start('Map', {
+            playerImage: 'avatar',
+            playerX: 200,
+            playerY: 500,
+            islandImage: 'island_1',
+            interestPoints: [
+                {
+                    key: 'empty',
+                    x: 530,
+                    y: 550,
+                    cb: (...args) => {
+                        console.log('coffre trouvé', args)
+                        openBoussole();
+                    }
+                },
+                {
+                    key: 'empty',
+                    x: 745,
+                    y: 275,
+                    cb: (...args) => console.log('boussole trouvé', args)
+                }
+            ]
+        });
     }
 };
 const openDialogScene = (sprite, text, next) => {
