@@ -119,7 +119,16 @@ const openSeaMap = () => {
             playerX: 100,
             playerY: 64,
             islandImage: 'ocean_islands',
-            interestPoints: []
+            interestPoints: [
+                {
+                    key: 'red_cross',
+                    x: 454,
+                    y: 638,
+                    cb: () => {
+                        openMap();
+                    }
+                }
+            ]
         });
     }
 };
