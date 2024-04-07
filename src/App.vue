@@ -148,7 +148,10 @@ const openMap = () => {
                     key: 'empty',
                     x: 530,
                     y: 550,
-                    cb: (...args) => console.log('coffre trouvé', args)
+                    cb: (...args) => {
+                        console.log('coffre trouvé', args)
+                        openBoussole();
+                    }
                 },
                 {
                     key: 'empty',
