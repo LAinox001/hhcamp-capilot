@@ -54,10 +54,10 @@ const weeks = [
 ]
 
 const emotions = ref(JSON.parse(localStorage.getItem("compassEmotions")) || []);
-const emotionsCopy = emotions.value;
-if (emotionsCopy.length < 30) {
-    for (let i = emotionsCopy.length; i < 30; i++){
-        emotionsCopy.push({emoji: ''})
+const emotionsCopy = ref(JSON.parse(JSON.stringify(emotions.value)));
+if (emotionsCopy.value.length < 30) {
+    for (let i = emotionsCopy.value.length; i < 30; i++){
+        emotionsCopy.value.push({emoji: ''})
     }
 }
 const textareaValues = []
@@ -65,7 +65,7 @@ emotions.value.forEach(emotion => {
     textareaValues.push(emotion.description || "");
 })
 
-const currentEmotion = ref(emotions.value[0]);
+const currentEmotion = ref(emotionsCopy.value[0]);
 const currentIndex = ref(0);
 const currentEmotionEdition = ref("");
 
@@ -79,9 +79,18 @@ function formatDate(date) {
 }
 
 function submitTextarea(text, index) {
+    console.log(currentEmotion.value)
     emotions.value[index].description = text;
     localStorage.setItem("compassEmotions", JSON.stringify(emotions.value));
+    emotionsCopy.value = JSON.parse(JSON.stringify(emotions.value));
+    currentEmotion.value = emotions.value[index];
+    if (emotionsCopy.value.length < 30) {
+        for (let i = emotionsCopy.value.length; i < 30; i++){
+            emotionsCopy.value.push({emoji: ''})
+        }
+    }
     currentEmotionEdition.value = "";
+    console.log(currentEmotion.value)
 }
 </script>
 
