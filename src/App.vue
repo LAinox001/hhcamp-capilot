@@ -22,6 +22,11 @@
                 le journal de bord
             </button>
         </div>
+        <div>
+            <button class="button" @click="clearLocalStorage">
+                Vider les données
+            </button>
+        </div>
     </div>
 </template>
 
@@ -189,4 +194,8 @@ const openDialog = () => {
         });
     }*/
 };
+
+const clearLocalStorage = () => {
+    localStorage.clear();
+}
 </script>
